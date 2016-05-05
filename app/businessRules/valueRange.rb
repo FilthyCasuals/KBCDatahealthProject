@@ -1,7 +1,12 @@
-def valuesInRange(csvfile, params)
-    CSV.foreach(csvfile, {:headers => true, :header_converters => :symbol}) do |row|
-        if (params[:column] >= params[:minValue] && params[:column] <= params[:maxValue])
+module valueRange
+
+    def valuesInRange(csvinput, csvoutput, params)
+        CSV.foreach(csvinput, {:headers => true, :header_converters => :symbol}) do |row|
+            unless (row[params[:column]] >= params[:minValue] && row[params[:column]] <= params[:maxValue])
+                row << [failure_reason: "Not in value range"]
+                csvoutpout << row.values
+            end
         end
     end
-    return failedLines
+
 end
