@@ -1,5 +1,5 @@
 require 'csv'
-def nullValueCheck(table, column)
+def nullValueCheck(csvinput, csvoutput, column)
   filepath = "data/in/tables".table.".csv"
   writer = CSV.open("data/out/tables".table."failures.csv", "wb")
   CSV.foreach(filepath, :headers => true) do |row|
