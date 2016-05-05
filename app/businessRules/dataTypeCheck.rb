@@ -7,15 +7,15 @@ module DataTypeCheck
       csv.each do |row|
 
           case params[:dataType]
-
+          # check for alphanumeric
           when 'alphanumeric'
-
             if(row[:"#{params[:column]}"].match(/^[[:alnum:]]+$/) rescue false)
                 Common::buildCSV(row.values, "pass")
             else
                 row[:failure_reason]  = "#{params[:column]} is not alphanumeric"
                 Common::buildCSV(row.values, "fail")
             end
+          #check for decimal
           when 'decimal'
             stuff = row[:"#{params[:column]}"]
             if(stuff.match(/^\d+.\d+$/))
@@ -24,6 +24,7 @@ module DataTypeCheck
                 row[:failure_reason]  = " #{params[:column]} is not decimal"
                 Common::buildCSV(row.values, "fail")
             end
+          #check for integer
           when 'integer'
             if(Integer(row[:"#{params[:column]}"]) rescue false)
                 Common::buildCSV(row.values, "pass")
@@ -33,6 +34,5 @@ module DataTypeCheck
             end
           end
       end
-
   end
 end
