@@ -1,6 +1,6 @@
 module valueRange
 
-    def applyRule(csvin, params)
+    def valueRange.applyRule(csvin, params)
         csvout = []
         CSV.foreach(csvin, {:headers => true, :header_converters => :symbol}) do |row|
             unless (row[params[:column]] >= params[:minValue] && row[params[:column]] <= params[:maxValue])
