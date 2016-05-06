@@ -14,11 +14,11 @@ CSV.open(csvdestination, "wb") do |csvout|
 end
 
 #apply business rules to input data
-params = {column: "amount", minValue: 0.00, maxValue: 10000.00}
-failedRows = []
-failedRows << ValueRange::applyRule(csvsource, params)
-CSV.open(csvdestination, "a+") do |csvout|
-    failedRows.each do |row|
+params = {column: "amount", minValue: 0.00, maxValue: 180000.00}
+failedRows = ValueRange::applyRule(csvsource, params)
+
+failedRows.each do |row|
+    CSV.open(csvdestination, "a") do |csvout|
         csvout << row
     end
 end
