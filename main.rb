@@ -1,7 +1,7 @@
 Dir["./app/businessRules/*.rb"].each {|file| require file }
 require "csv"
 
-
+include ValueRange
 #variables
 csvsource = "./data/in/tables/opportunity.csv"
 csvdestination = "./data/out/tables/destination.csv"
@@ -14,9 +14,9 @@ CSV.open(csvdestination, "wb") do |csvout|
 end
 
 #apply business rules to input data
-params = [column: "amount", minValue: 0.00, maxValue: 10000.00]
+params = {column: "amount", minValue: 0.00, maxValue: 10000.00}
 failedRows = []
-failedRows << valueRange::applyRule(csvsource, params)
+failedRows << ValueRange::applyRule(csvsource, params)
 CSV.open(csvdestination, "a+") do |csvout|
     failedRows.each do |row|
         csvout << row
