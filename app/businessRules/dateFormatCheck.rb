@@ -19,7 +19,7 @@ def DateFormatCheck(csvin, params)
   when "MM/DD/YYYY"
     m = /^((1[0-2])|0([1-9]))\/(([1-2][0-9])|0([1-9])|(3[0-1]))\/[0-9]{4}$/
     return checkMatch(csvin, m)
-  else #default case
+  else 
   end
 end
 
