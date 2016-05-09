@@ -1,5 +1,5 @@
 "Id","Name","Opportunity__c","Type","Amount","StageName","Probability","ForecastCategoryName","Most_Likely__c","CampaignId","License_Type__c","Contract_of_Yrs__c","CreatedDate","CloseDate","OwnerId","AccountId","ProductId"
-"00630000001jbkaAAA","Big Corp20121aAAA","","New","0.00","Qualified Out","0","Omitted","","","","","2011-01-11","2013-05-06","00530000000pXA1AAM","00130000004EeEHAA0","Defective"
+"00630000001jbkaAAA","Big Corp20121aAAA","","New","0.00","Qualified Out","0","Omitted","","","","","08/12/1999","2013-05-06","00530000000pXA1AAM","00130000004EeEHAA0","Defective"
 "00630000001jdxXAAQ","Boomberg20121XAAQ","","","0.00","Closed Lost","0","Omitted","","","","","2011-01-11","2011-08-01","00530000000eMGcAAM","00130000004F0x4AAC","Defective"
 "00630000001je2hAAA","GiganCorp20121hAAA","","New","0.00","Qualified Out","0","Omitted","","","","","2011-01-11","2012-02-23","00530000000eMGcAAM","00130000004F4P2AAK","Defective"
 "00630000001jlrQAAQ","Yankeedoodle20131QAAQ","","","0.00","Closed Lost","0","Omitted","","","","","2011-01-12","2012-07-27","00530000000eMGcAAM","0013000000K7lfHAAR","Defective"
