@@ -6,7 +6,7 @@ include Common
 include ValueRange
 
 #variables
-csvSource = "./data/in/tables/opportunity.csv"
+csvSource = "./test/data/in/tables/opportunity.csv"
 
 #Set up headers for csvoutput file, based on columns from input
 Common::buildHeaders(csvSource)
