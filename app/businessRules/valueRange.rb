@@ -1,6 +1,6 @@
 module ValueRange
 
-    def applyRule(csvin, params)
+    def applyValueRange(csvin, params)
         csv = CSV.open(csvin, :headers => true, :header_converters => :symbol).to_a.map {|row| row.to_hash}
         csv.each do |row|
             if (row[:"#{params[:column]}"].to_f >= params[:minValue] && row[:"#{params[:column]}"].to_f <= params[:maxValue])

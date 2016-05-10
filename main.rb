@@ -4,6 +4,7 @@ require "./common/lib.rb"
 
 include Common
 include ValueRange
+include KnownValues
 
 #variables
 csvSource = "./test/data/in/tables/opportunity.csv"
@@ -11,6 +12,14 @@ csvSource = "./test/data/in/tables/opportunity.csv"
 #Set up headers for csvoutput file, based on columns from input
 Common::buildHeaders(csvSource)
 
+#Test data for passed in business rules structure
+requestedRules =
+[
+    [rule: "applyValueRange", params: { column: "amount", minValue: 0.00, maxValue: 180000.00 }],
+    [rule: "applyKnownValues", params: { column: "stagename", values: ["Closed Lost", "Closed Won"] }]
+]
+
 #apply business rules to input data
-params = {column: "amount", minValue: 0.00, maxValue: 180000.00}
-ValueRange::applyRule(csvSource, params)
+requestedRules.each do |ruleData|
+    self.send(ruleData[0][:rule], csvSource, ruleData[0][:params])
+end
