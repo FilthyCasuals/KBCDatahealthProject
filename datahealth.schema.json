@@ -10,7 +10,8 @@
         "type": "object",
         "oneOf": [
           { "$ref": "#/definitions/datatype" },
-          { "$ref": "#/definitions/valuerange" }
+          { "$ref": "#/definitions/valuerange" },
+          { "$ref": "#/definitions/knownvalues"}
         ]
       }
     }
@@ -39,7 +40,31 @@
         "minval": { "type": "integer" },
         "maxval": { "type": "integer" }
       },
-      "required": [ "rule", "column", "minval", "maxval" ],
+      "required": [ "rule", "column", "minValue", "maxValue" ],
+      "additionalProperties": false
+    },
+    "knownvalues": {
+      "title": "Known Value",
+      "type": "object",
+      "properties": {
+        "rule": { "type": "string", "enum": [ "valueRange"], "default": "valueRange", "readOnly": true },
+        "column": { "type": "string" },
+        "values": {
+          "type": "array",
+          "title": "Known Values",
+          "uniqueItems": true,
+          "items": {
+            "type": "object",
+            "title": "Value",
+            "properties": {
+              "name": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "required": [ "rule", "column", "values" ],
       "additionalProperties": false
     }
   }
