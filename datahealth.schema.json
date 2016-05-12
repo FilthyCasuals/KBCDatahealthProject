@@ -30,9 +30,9 @@
       "properties": {
         "rule": { "type": "string", "enum": [ "dataType"], "default": "dataType", "readOnly": true },
         "column": {"type": "string" },
-        "typeofdata": { "type": "string", "enum": [ "string", "integer", "decimal number", "date" ] }
+        "dataType": { "type": "string", "title": "Type of Data", "enum": [ "string", "integer", "decimal number", "date" ] }
       },
-      "required": [ "rule", "column", "typeofdata" ],
+      "required": [ "rule", "column", "dataType" ],
       "additionalProperties": false
     },
     "valuerange": {
@@ -120,10 +120,10 @@
       "title": "String Length",
 	  "type": "object",
 	  "properties": {
-        "rule": { "type": "string", "enum": [ "stringLength"], "default": "stringLength", "readOnly": true },
-        "column": { "type": "string" },
+        "rule": { "type": "string", "title": "Rule", "enum": [ "stringLength"], "default": "stringLength", "readOnly": true },
+        "column": { "type": "string", "title": "Column" },
 		"rules": {
-			"title": "options",
+			"title": "Options",
 			"type": "object",
 			"oneOf": [
 			  { "$ref": "#/definitions/exactlength" },
