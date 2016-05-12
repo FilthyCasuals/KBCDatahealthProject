@@ -18,7 +18,9 @@
 		  { "$ref": "#/definitions/stringlength"}
         ]
       }
-    }
+    },
+    "required": [ "ruleparameters" ],
+    "additionalProperties": false
   },
   "default": {
     "ruleparameters": "#/definitions/datatype"
@@ -30,9 +32,9 @@
       "properties": {
         "rule": { "type": "string", "enum": [ "dataType"], "default": "dataType", "readOnly": true },
         "column": {"type": "string" },
-        "dataType": { "type": "string", "title": "Type of Data", "enum": [ "string", "integer", "decimal number", "date" ] }
+        "typeofdata": { "type": "string", "enum": [ "string", "integer", "decimal number", "date" ] }
       },
-      "required": [ "rule", "column", "dataType" ],
+      "required": [ "rule", "column", "typeofdata" ],
       "additionalProperties": false
     },
     "valuerange": {
@@ -64,7 +66,9 @@
               "name": {
                 "type": "string"
               }
-            }
+            },
+            "required": [ "name" ],
+            "additionalProperties": false
           }
         }
       },
@@ -84,7 +88,6 @@
         },
       "required": [ "rule", "column", "timeFormat" ],
       "additionalProperties": false
-
     },
     "relativedate": {
         "title": "Relative Date",
@@ -111,7 +114,6 @@
       "properties": {
         "rule": { "type": "string", "enum": [ "nullEmptyCheck"], "default": "nullEmptyCheck", "readOnly": true },
         "column": { "type": "string" }
-
       },
       "required": [ "rule", "column"],
       "additionalProperties": false
@@ -120,18 +122,18 @@
       "title": "String Length",
 	  "type": "object",
 	  "properties": {
-        "rule": { "type": "string", "title": "Rule", "enum": [ "stringLength"], "default": "stringLength", "readOnly": true },
-        "column": { "type": "string", "title": "Column" },
-		"rules": {
-			"title": "Options",
-			"type": "object",
-			"oneOf": [
-			  { "$ref": "#/definitions/exactlength" },
-			  { "$ref": "#/definitions/lengthrange" }
-			]
-		  }
+        "rule": { "type": "string", "enum": [ "stringLength"], "default": "stringLength", "readOnly": true },
+        "column": { "type": "string" },
+		    "options": {
+  			  "title": "options",
+  			  "type": "object",
+  			  "oneOf": [
+  			    { "$ref": "#/definitions/exactlength" },
+  			    { "$ref": "#/definitions/lengthrange" }
+  			  ]
+		    }
       },
-		"required": [ "rule", "column"],
+		"required": [ "rule", "column", "options" ],
 		"additionalProperties": false
 	},
 	"exactlength": {
@@ -143,7 +145,7 @@
           "title": "Exact Length"
          }
       },
-      "required": [ "strLen"],
+      "required": [ "strLen" ],
       "additionalProperties": false
     },
 	"lengthrange": {
