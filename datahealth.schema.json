@@ -14,7 +14,8 @@
           { "$ref": "#/definitions/knownvalues"},
           { "$ref": "#/definitions/dateformatcheck"},
           { "$ref": "#/definitions/relativedate"},
-          { "$ref": "#/definitions/nullempty"}
+          { "$ref": "#/definitions/nullempty"},
+		  { "$ref": "#/definitions/stringlength"}
         ]
       }
     }
@@ -110,8 +111,46 @@
       "properties": {
         "rule": { "type": "string", "enum": [ "nullEmptyCheck"], "default": "nullEmptyCheck", "readOnly": true },
         "column": { "type": "string" }
+		
       },
       "required": [ "rule", "column"],
+      "additionalProperties": false
+    },
+	"stringlength": {
+      "title": "String Length",
+	  "type": "object",
+	  "properties": {
+        "rule": { "type": "string", "enum": [ "stringLength"], "default": "stringLength", "readOnly": true },
+        "column": { "type": "string" },
+		"rules": {
+			"title": "options",
+			"type": "object",
+			"oneOf": [
+			  { "$ref": "#/definitions/exactlength" },
+			  { "$ref": "#/definitions/lengthrange" }
+			]
+		  }
+      },
+		"required": [ "rule", "column"],
+		"additionalProperties": false
+	},
+	"exactlength": {
+      "title": "exact length",
+      "type": "object",
+      "properties": {
+        "exact length": { "type": "integer" }
+      },
+      "required": [ "exact length"],
+      "additionalProperties": false
+    },
+	"lengthrange": {
+      "title": "Range of length",
+      "type": "object",
+      "properties": {
+        "Minimum length": { "type": "integer" },
+		"Maximum length": { "type": "integer" }
+      },
+      "required": [ "Minimum length", "Maximum length"],
       "additionalProperties": false
     }
   }
