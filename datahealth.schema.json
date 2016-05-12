@@ -5,7 +5,7 @@
     "title": "Business Rule",
     "type": "object",
     "properties": {
-      "rules": {
+      "ruleparameters": {
         "title": "rule",
         "type": "object",
         "oneOf": [
@@ -21,7 +21,7 @@
     }
   },
   "default": {
-    "rules": "#/definitions/datatype"
+    "ruleparameters": "#/definitions/datatype"
   },
   "definitions": {
     "datatype": {
@@ -111,7 +111,7 @@
       "properties": {
         "rule": { "type": "string", "enum": [ "nullEmptyCheck"], "default": "nullEmptyCheck", "readOnly": true },
         "column": { "type": "string" }
-		
+
       },
       "required": [ "rule", "column"],
       "additionalProperties": false
@@ -135,22 +135,31 @@
 		"additionalProperties": false
 	},
 	"exactlength": {
-      "title": "exact length",
+      "title": "Exact Length",
       "type": "object",
       "properties": {
-        "exact length": { "type": "integer" }
+        "strLen": {
+          "type": "integer",
+          "title": "Exact Length"
+         }
       },
-      "required": [ "exact length"],
+      "required": [ "strLen"],
       "additionalProperties": false
     },
 	"lengthrange": {
-      "title": "Range of length",
+      "title": "Variable Length",
       "type": "object",
       "properties": {
-        "Minimum length": { "type": "integer" },
-		"Maximum length": { "type": "integer" }
+        "minLen": {
+          "type": "integer",
+          "title": "Minimum Length"
+        },
+		    "maxLen": {
+          "type": "integer",
+          "title": "Maximum Length"
+        }
       },
-      "required": [ "Minimum length", "Maximum length"],
+      "required": [ "minLen", "manLen"],
       "additionalProperties": false
     }
   }
