@@ -5,7 +5,7 @@ require "./common/lib.rb"
 include Common
 include ValueRange
 include KnownValues
-
+include RelativeDate
 #variables
 csvSource = "./test/data/in/tables/opportunity.csv"
 
@@ -16,7 +16,9 @@ Common::buildHeaders(csvSource)
 requestedRules =
 [
     [rule: "applyValueRange", params: { column: "amount", minValue: 0.00, maxValue: 180000.00 }],
-    [rule: "applyKnownValues", params: { column: "stagename", values: ["Closed Lost", "Closed Won"] }]
+    [rule: "applyKnownValues", params: { column: "stagename", values: ["Closed Lost", "Closed Won"] }],
+    #[rule: "applyRelativeDate", params: {column: "createddate", direction:"future", relativeTime:"2011-05-01", timeFormat:"YYYY-MM-DD"}]
+
 ]
 
 #apply business rules to input data
