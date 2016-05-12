@@ -11,7 +11,9 @@
         "oneOf": [
           { "$ref": "#/definitions/datatype" },
           { "$ref": "#/definitions/valuerange" },
-          { "$ref": "#/definitions/knownvalues"}
+          { "$ref": "#/definitions/knownvalues"},
+          { "$ref": "#/definitions/dateformatcheck"},
+          { "$ref": "#/definitions/relativedate"},
         ]
       }
     }
@@ -65,6 +67,30 @@
         }
       },
       "required": [ "rule", "column", "values" ],
+      "additionalProperties": false
+    },
+    "dateformatcheck": {
+      "title": "Date Format",
+      "type": "object",
+      "properties": {
+        "rule": { "type": "string", "enum": [ "dateFormatCheck"], "default": "dateFormatCheck", "readOnly": true },
+        "column": { "type": "string" },
+        "timeFormat": { "type": "string" }
+      },
+      "required": [ "rule", "column", "timeFormat" ],
+      "additionalProperties": false
+    },
+    "relativedate": {
+      "title": "Relative Date",
+      "type": "object",
+      "properties": {
+        "rule": { "type": "string", "enum": [ "RelativeDate"], "default": "relativeDate", "readOnly": true },
+        "column": { "type": "string" },
+        "timeFormat": { "type": "string"},
+        "datePicked": {"type": "string"},
+        "direction": {"type": "string"},
+      },
+      "required": [ "rule", "column", "timeFormat", "datePicked", "direction"],
       "additionalProperties": false
     }
   }
