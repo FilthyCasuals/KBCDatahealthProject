@@ -13,7 +13,8 @@
           { "$ref": "#/definitions/valuerange" },
           { "$ref": "#/definitions/knownvalues"},
           { "$ref": "#/definitions/dateformatcheck"},
-          { "$ref": "#/definitions/relativedate"}
+          { "$ref": "#/definitions/relativedate"},
+          { "$ref": "#/definitions/nullempty"}
         ]
       }
     }
@@ -88,7 +89,7 @@
         "title": "Relative Date",
         "type": "object",
         "properties": {
-          "rule": { "type": "string", "enum": [ "RelativeDate"], "default": "relativeDate", "readOnly": true },
+          "rule": { "type": "string", "enum": [ "relativeDate"], "default": "relativeDate", "readOnly": true },
           "column": { "type": "string" },
           "timeFormat": {
               "title": "Choose time format",
@@ -102,6 +103,16 @@
         },
         "required": [ "rule", "column", "timeFormat", "datePicked", "direction"],
         "additionalProperties": false
-      }
+      },
+    "nullempty": {
+      "title": "Null Empty Check",
+      "type": "object",
+      "properties": {
+        "rule": { "type": "string", "enum": [ "nullEmptyCheck"], "default": "nullEmptyCheck", "readOnly": true },
+        "column": { "type": "string" }
+      },
+      "required": [ "rule", "column"],
+      "additionalProperties": false
+    }
   }
 }
