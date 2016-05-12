@@ -96,7 +96,7 @@
               "title": "Choose time format",
               "type": "string",
               "enum": ["YYYY-MM-DD","YYYYMMDD", "YYYY-MM", "MM/DD/YYYY", "DD/MM/YYYY", "YYYY"]},
-          "datePicked": {"type": "string"},
+          "datePicked": {"title": "Please specify the date to compare to. (With the same format above)","type": "string"},
           "direction": {
             "title": "Choose the direction",
             "type": "string",
