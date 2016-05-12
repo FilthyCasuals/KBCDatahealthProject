@@ -159,7 +159,7 @@
           "title": "Maximum Length"
         }
       },
-      "required": [ "minLen", "manLen"],
+      "required": [ "minLen", "maxLen"],
       "additionalProperties": false
     }
   }
