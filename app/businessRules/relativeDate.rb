@@ -43,7 +43,7 @@ require 'date'
         row[:failure_reason]  = "Doesn't match the given date format."
         Common::buildCSV(row.values, "fail")
       else
-        #convert the picked date from any formaat to standard format as <DateTime: 2001-02-03T04:05:06+07:00 ...>
+        #convert the picked date from any format to standard format as <DateTime: 2001-02-03T04:05:06+07:00 ...>
         pickDateTime = DateTime.strptime(pickDate, timeFormat)
 
 
