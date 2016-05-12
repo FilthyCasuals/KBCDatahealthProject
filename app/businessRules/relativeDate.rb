@@ -3,9 +3,7 @@ require 'date'
   def applyRelativeDate(csvin, params)
 
     case params[:timeFormat]
-    when "hh:mm:ss"
-      timeFormat = "%H:%M:%S"
-      return checkMatch(csvin, timeFormat, params)
+
     when "YYYY-MM-DD"
       timeFormat = "%Y-%m-%d"
       return checkMatch(csvin, timeFormat, params)
@@ -32,7 +30,7 @@ require 'date'
   def checkMatch(csvin, timeFormat, params)
     #get the user defined values from params
     column = params[:column]
-    pickDate = params[:relativeTime]
+    pickDate = params[:datePicked]
     direction = params[:direction]
 
     #iterate the input file
@@ -47,6 +45,7 @@ require 'date'
       else
         #convert the picked date from any formaat to standard format as <DateTime: 2001-02-03T04:05:06+07:00 ...>
         pickDateTime = DateTime.strptime(pickDate, timeFormat)
+
 
         #check if it's in the past/future relative to picked date
         if dateTime <= pickDateTime && direction == "past"

@@ -13,7 +13,7 @@
           { "$ref": "#/definitions/valuerange" },
           { "$ref": "#/definitions/knownvalues"},
           { "$ref": "#/definitions/dateformatcheck"},
-          { "$ref": "#/definitions/relativedate"},
+          { "$ref": "#/definitions/relativedate"}
         ]
       }
     }
@@ -28,7 +28,7 @@
       "properties": {
         "rule": { "type": "string", "enum": [ "dataType"], "default": "dataType", "readOnly": true },
         "column": {"type": "string" },
-        "typeofdata": { "type": "string", "enum": [ "string", "integer", "decimal number"] }
+        "typeofdata": { "type": "string", "enum": [ "string", "integer", "floating point number", "boolean" ] }
       },
       "required": [ "rule", "column", "typeofdata" ],
       "additionalProperties": false
@@ -75,23 +75,33 @@
       "properties": {
         "rule": { "type": "string", "enum": [ "dateFormatCheck"], "default": "dateFormatCheck", "readOnly": true },
         "column": { "type": "string" },
-        "timeFormat": { "type": "string" }
-      },
+        "timeFormat": {
+            "title": "Choose time format",
+            "type": "string",
+            "enum": ["YYYY-MM-DD","YYYYMMDD", "YYYY-MM", "MM/DD/YYYY", "DD/MM/YYYY", "YYYY", "hh:mm:ss"]}
+        },
       "required": [ "rule", "column", "timeFormat" ],
       "additionalProperties": false
-    },
-    "relativedate": {
+
+  },
+  "relativedate": {
       "title": "Relative Date",
       "type": "object",
       "properties": {
         "rule": { "type": "string", "enum": [ "RelativeDate"], "default": "relativeDate", "readOnly": true },
         "column": { "type": "string" },
-        "timeFormat": { "type": "string"},
+        "timeFormat": {
+            "title": "Choose time format",
+            "type": "string",
+            "enum": ["YYYY-MM-DD","YYYYMMDD", "YYYY-MM", "MM/DD/YYYY", "DD/MM/YYYY", "YYYY"]},
         "datePicked": {"type": "string"},
-        "direction": {"type": "string"},
+        "direction": {
+          "title": "Choose the direction",
+          "type": "string",
+          "enum": ["past","future"]}
       },
       "required": [ "rule", "column", "timeFormat", "datePicked", "direction"],
       "additionalProperties": false
     }
-  }
+}
 }
