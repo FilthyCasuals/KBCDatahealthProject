@@ -46,10 +46,10 @@
       "additionalProperties": false
     },
     "knownvalues": {
-      "title": "Known Value",
+      "title": "Known Values",
       "type": "object",
       "properties": {
-        "rule": { "type": "string", "enum": [ "valueRange"], "default": "valueRange", "readOnly": true },
+        "rule": { "type": "string", "enum": [ "knownValues"], "default": "knownValues", "readOnly": true },
         "column": { "type": "string" },
         "values": {
           "type": "array",
@@ -83,25 +83,25 @@
       "required": [ "rule", "column", "timeFormat" ],
       "additionalProperties": false
 
-  },
-  "relativedate": {
-      "title": "Relative Date",
-      "type": "object",
-      "properties": {
-        "rule": { "type": "string", "enum": [ "RelativeDate"], "default": "relativeDate", "readOnly": true },
-        "column": { "type": "string" },
-        "timeFormat": {
-            "title": "Choose time format",
+    },
+    "relativedate": {
+        "title": "Relative Date",
+        "type": "object",
+        "properties": {
+          "rule": { "type": "string", "enum": [ "RelativeDate"], "default": "relativeDate", "readOnly": true },
+          "column": { "type": "string" },
+          "timeFormat": {
+              "title": "Choose time format",
+              "type": "string",
+              "enum": ["YYYY-MM-DD","YYYYMMDD", "YYYY-MM", "MM/DD/YYYY", "DD/MM/YYYY", "YYYY"]},
+          "datePicked": {"type": "string"},
+          "direction": {
+            "title": "Choose the direction",
             "type": "string",
-            "enum": ["YYYY-MM-DD","YYYYMMDD", "YYYY-MM", "MM/DD/YYYY", "DD/MM/YYYY", "YYYY"]},
-        "datePicked": {"type": "string"},
-        "direction": {
-          "title": "Choose the direction",
-          "type": "string",
-          "enum": ["past","future"]}
-      },
-      "required": [ "rule", "column", "timeFormat", "datePicked", "direction"],
-      "additionalProperties": false
-    }
-}
+            "enum": ["past","future"]}
+        },
+        "required": [ "rule", "column", "timeFormat", "datePicked", "direction"],
+        "additionalProperties": false
+      }
+  }
 }
