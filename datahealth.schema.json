@@ -39,8 +39,8 @@
       "properties": {
         "rule": { "type": "string", "enum": [ "valueRange"], "default": "valueRange", "readOnly": true },
         "column": { "type": "string" },
-        "minval": { "type": "integer" },
-        "maxval": { "type": "integer" }
+        "minValue": { "type": "integer" },
+        "maxValue": { "type": "integer" }
       },
       "required": [ "rule", "column", "minValue", "maxValue" ],
       "additionalProperties": false
