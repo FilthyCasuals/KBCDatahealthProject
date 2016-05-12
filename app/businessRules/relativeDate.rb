@@ -1,28 +1,32 @@
 module RelativeDate
 require 'date'
   def applyRelativeDate(csvin, params)
+    if(Date.parse(row[:"#{params[:pickeDate]}"]) rescue false)
+      case params[:timeFormat]
+      when "YYYY-MM-DD"
+        timeFormat = "%Y-%m-%d"
+        return checkMatch(csvin, timeFormat, params)
+      when "YYYY-MM"
+        timeFormat = "%Y-%m"
+        return checkMatch(csvin, timeFormat, params)
+      when "YYYY"
+        timeFormat = "%Y"
+        return checkMatch(csvin, timeFormat, params)
+      when "DD/MM/YYYY"
+        timeFormat = "%d/%m/%Y"
+        return checkMatch(csvin, timeFormat, params)
+      when "MM/DD/YYYY"
+        timeFormat = "%m/%d/%Y"
+        return checkMatch(csvin, timeFormat, params)
+      when "YYYYMMDD"
+        timeFormat = "%Y%m%d"
+        return checkMatch(csvin, timeFormat, params)
+      else
+      end
 
-    case params[:timeFormat]
-
-    when "YYYY-MM-DD"
-      timeFormat = "%Y-%m-%d"
-      return checkMatch(csvin, timeFormat, params)
-    when "YYYY-MM"
-      timeFormat = "%Y-%m"
-      return checkMatch(csvin, timeFormat, params)
-    when "YYYY"
-      timeFormat = "%Y"
-      return checkMatch(csvin, timeFormat, params)
-    when "DD/MM/YYYY"
-      timeFormat = "%d/%m/%Y"
-      return checkMatch(csvin, timeFormat, params)
-    when "MM/DD/YYYY"
-      timeFormat = "%m/%d/%Y"
-      return checkMatch(csvin, timeFormat, params)
-    when "YYYYMMDD"
-      timeFormat = "%Y%m%d"
-      return checkMatch(csvin, timeFormat, params)
     else
+      #if the picked date is not a valid input (date format) throw an error msg
+
     end
   end
 
