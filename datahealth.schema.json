@@ -84,7 +84,7 @@
         "timeFormat": {
             "title": "Choose time format",
             "type": "string",
-            "enum": ["YYYY-MM-DD","YYYYMMDD", "YYYY-MM", "MM/DD/YYYY", "DD/MM/YYYY", "YYYY", "hh:mm:ss"]}
+            "enum": ["YYYY-MM-DD","YYYYMMDD", "YYYY-MM","YYYY/MM/DD", "MM/DD/YYYY", "DD/MM/YYYY", "YYYY", "hh:mm:ss"]}
         },
       "required": [ "rule", "column", "timeFormat" ],
       "additionalProperties": false
@@ -98,7 +98,7 @@
           "timeFormat": {
               "title": "Choose time format",
               "type": "string",
-              "enum": ["YYYY-MM-DD","YYYYMMDD", "YYYY-MM", "MM/DD/YYYY", "DD/MM/YYYY", "YYYY"]},
+              "enum": ["YYYY-MM-DD","YYYYMMDD", "YYYY-MM","YYYY/MM/DD","MM/DD/YYYY", "DD/MM/YYYY", "YYYY"]},
           "datePicked": {"title": "Please specify the date to compare to. (With the same format above)","type": "string"},
           "direction": {
             "title": "Choose the direction",

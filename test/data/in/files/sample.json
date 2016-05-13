@@ -40,7 +40,7 @@
       "rule": "relativeDate",
       "column": "CreatedDate",
       "timeFormat": "YYYY-MM-DD",
-      "datePicked": "2011-01-10",
+      "datePicked": "2014-01-10",
       "direction": "past"
     }
   },

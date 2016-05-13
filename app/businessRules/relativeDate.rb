@@ -15,6 +15,9 @@ require 'date'
     when "DD/MM/YYYY"
       timeFormat = "%d/%m/%Y"
       return checkMatch(csvin, timeFormat, params)
+    when "YYYY/MM/DD"
+      timeFormat = "%Y/%d/%m"
+      return checkMatch(csvin, timeFormat, params)
     when "MM/DD/YYYY"
       timeFormat = "%m/%d/%Y"
       return checkMatch(csvin, timeFormat, params)
@@ -27,25 +30,25 @@ require 'date'
 
 
   def checkMatch(csvin, timeFormat, params)
-    #get the user defined values from params
-    column = params[:column]
     pickDate = params[:datePicked]
-    direction = params[:direction]
+    #convert the picked date from any format to standard format as <DateTime: 2001-02-03T04:05:06+07:00 ...>
     begin
-      checkRelative(csvin,timeFormat,direction,pickDate,column)
+      pickDateTime = DateTime.strptime(pickDate, timeFormat)
     rescue ArgumentError
       return false
-
+    else
+      checkRelative(csvin,timeFormat,params,pickDateTime)
     end
   end
 
-  def checkRelative(csvin,timeFormat,direction,pickDate,column)
-    #convert the picked date from any format to standard format as <DateTime: 2001-02-03T04:05:06+07:00 ...>
-    pickDateTime = DateTime.strptime(pickDate, timeFormat)
+  def checkRelative(csvin,timeFormat,params,pickDateTime)
+    #get the user defined values from params
+    column = params[:column]
+    direction = params[:direction]
+    pickDate = params[:datePicked]
     #iterate the input file
     csv = CSV.open(csvin, :headers => true, :header_converters => :symbol).to_a.map {|row| row.to_hash}
     csv.each do |row|
-      #convert the input date from custom format to standard format as <DateTime: 2001-02-03T04:05:06+07:00 ...>
       begin
         dateTime = DateTime.strptime(row[:"#{column}"], timeFormat)
       rescue ArgumentError
