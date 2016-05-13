@@ -1,6 +1,6 @@
 module RelativeDate
 require 'date'
-  def applyRelativeDate(csvin, params)
+  def relativeDate(csvin, params)
 
     case params[:timeFormat]
     when "YYYY-MM-DD"

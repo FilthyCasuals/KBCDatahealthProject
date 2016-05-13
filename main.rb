@@ -20,7 +20,12 @@ paramSource = "./test/data/in/files/sample.json"
 #Set up headers for csvoutput file, based on columns from input
 Common::buildHeaders(csvSource)
 
+jsonFile = File.read(paramSource)
+requestedRules = JSON.parse(jsonFile, :symbolize_names => true)
+
+puts requestedRules
 #apply business rules to input data
 requestedRules.each do |ruleData|
-    self.send(ruleData[0][:rule], csvSource, ruleData[0][:params])
+  ruleData[:ruleparameters][:column] = ruleData[:ruleparameters][:column].downcase
+    self.send(ruleData[:ruleparameters][:rule], csvSource, ruleData[:ruleparameters])
 end

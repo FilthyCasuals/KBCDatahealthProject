@@ -1,6 +1,6 @@
 module DateFormatCheck
 
-  def applyDateFormatCheck(csvin, params)
+  def dateFormatCheck(csvin, params)
     column = params[:column]
     case params[:timeFormat]
     when "hh:mm:ss"

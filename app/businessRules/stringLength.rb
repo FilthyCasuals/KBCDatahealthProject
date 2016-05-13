@@ -2,7 +2,7 @@ require 'csv'
 require 'fileutils'
 require 'tempfile'
 module StringLength
-  def applyRule(csvinput, params)
+  def stringLength(csvinput, params)
     failureField = "Failed the string length check"
     CSV.foreach(csvinput, :headers => true, :header_converters => :symbol, :converters => :all) do |row|
       row << row.to_hash
