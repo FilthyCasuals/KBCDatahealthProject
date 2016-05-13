@@ -32,15 +32,15 @@
     "ruleparameters": {
       "rule": "dateFormatCheck",
       "column": "CreatedDate",
-      "timeFormat": "YYYY-MM-DD"
+      "timeFormat": "YYYY/MM/DD"
     }
   },
   {
     "ruleparameters": {
       "rule": "relativeDate",
       "column": "CreatedDate",
-      "timeFormat": "YYYY-MM-DD",
-      "datePicked": "2014-01-10",
+      "timeFormat": "YYYY/MM/DD",
+      "datePicked": "2010/01/10",
       "direction": "past"
     }
   },
