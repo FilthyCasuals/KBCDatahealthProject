@@ -16,7 +16,7 @@ require 'date'
       timeFormat = "%d/%m/%Y"
       return checkMatch(csvin, timeFormat, params)
     when "YYYY/MM/DD"
-      timeFormat = "%Y/%d/%m"
+      timeFormat = "%Y/%m/%d"
       return checkMatch(csvin, timeFormat, params)
     when "MM/DD/YYYY"
       timeFormat = "%m/%d/%Y"
