@@ -7,7 +7,11 @@ module StringLength
     failureField = params[:column] + " failed the string length check"
     CSV.foreach(csvinput, :headers => true, :header_converters => :symbol, :converters => :all) do |row|
       row << row.to_hash
-      if (params[:rules][:strLen])
+      if(row[:"#{params[:column]}"] == nil){
+        row << failureField
+        Common::buildCSV(row, "fail")
+      }
+      elsif (params[:rules][:strLen])
         if (row[:"#{params[:column]}"].size == params[:rules][:strLen])
           Common::buildCSV(row, "pass")
         else
