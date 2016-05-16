@@ -3,7 +3,6 @@ require 'fileutils'
 require 'tempfile'
 module StringLength
   def stringLength(csvinput, params)
-    puts params
     failureField = params[:column] + " failed the string length check"
     CSV.foreach(csvinput, :headers => true, :header_converters => :symbol, :converters => :all) do |row|
       row << row.to_hash
@@ -34,7 +33,8 @@ module StringLength
           end
         end
       else
-        puts "Error occured, invalid string length setting."
+        row << "Error occured, invalid string length setting."
+        Common::buildCSV(row, "fail")
       end
     end
   end

@@ -1,7 +1,7 @@
 module Common
 
-    @passDestination = "/home/data/out/tables/passDestination.csv"
-    @failDestination = "/home/data/out/tables/failDestination.csv"
+    @passDestination = "/data/out/tables/passDestination.csv"
+    @failDestination = "/data/out/tables/failDestination.csv"
 
     def buildHeaders(csv)
         #get headers for output

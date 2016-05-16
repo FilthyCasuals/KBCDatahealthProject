@@ -15,12 +15,12 @@ include NullEmptyCheck
 include StringLength
 
 #parse input JSON for rule parameters
-paramSource = "/home/data/config.json"
+paramSource = "/data/config.json"
 jsonFile = File.read(paramSource)
 ruleConfig = JSON.parse(jsonFile, :symbolize_names => true)
 
 #Set up headers for csvoutput file, based on columns from input
-csvSource = "/home/data/in/tables/" + ruleConfig[:configData][:storage][:input][:tables][0][:destination]
+csvSource = "/data/in/tables/" + ruleConfig[:configData][:storage][:input][:tables][0][:destination]
 Common::buildHeaders(csvSource)
 
 #apply business rules to input data
