@@ -4,6 +4,7 @@ require "./common/lib.rb"
 require "csv"
 require 'json'
 
+#include models of business rules and common function files
 include Common
 include ValueRange
 include KnownValues
@@ -13,18 +14,17 @@ include DateFormatCheck
 include NullEmptyCheck
 include StringLength
 
-#variables
-csvSource = "./test/data/in/tables/opportunity.csv"
-paramSource = "./test/data/in/files/sample.json"
+#parse input JSON for rule parameters
+paramSource = "./data/config.json"
+jsonFile = File.read(paramSource)
+ruleConfig = JSON.parse(jsonFile, :symbolize_names => true)
 
 #Set up headers for csvoutput file, based on columns from input
+csvSource = "./data/in/tables/" + ruleConfig[:configData][:storage][:input][:tables][0][:destination]
 Common::buildHeaders(csvSource)
 
-jsonFile = File.read(paramSource)
-requestedRules = JSON.parse(jsonFile, :symbolize_names => true)
-
-puts requestedRules
 #apply business rules to input data
+requestedRules = ruleConfig[:configData][:parameters]
 requestedRules.each do |ruleData|
   ruleData[:ruleparameters][:column] = ruleData[:ruleparameters][:column].downcase
     self.send(ruleData[:ruleparameters][:rule], csvSource, ruleData[:ruleparameters])
