@@ -24,7 +24,7 @@ csvSource = "/data/in/tables/" + ruleConfig[:storage][:input][:tables][0][:desti
 Common::buildHeaders(csvSource)
 
 #apply business rules to input data
-requestedRules = ruleConfig[:configData][:parameters]
+requestedRules = ruleConfig[:parameters]
 requestedRules.each do |ruleData|
   ruleData[:ruleparameters][:column] = ruleData[:ruleparameters][:column].downcase
     self.send(ruleData[:ruleparameters][:rule], csvSource, ruleData[:ruleparameters])
