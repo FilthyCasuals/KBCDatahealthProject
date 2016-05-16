@@ -32,6 +32,7 @@
       "properties": {
         "rule": { "type": "string", "enum": [ "dataType"], "default": "dataType", "readOnly": true },
         "column": {"type": "string" },
+        "typeofdata": { "type": "string", "enum": [ "alphanumberic", "integer", "decimal", "date" ] }
       },
       "required": [ "rule", "column", "typeofdata" ],
       "additionalProperties": false
