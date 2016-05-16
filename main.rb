@@ -1,6 +1,6 @@
 require 'rubygems'
-Dir["./app/businessRules/*.rb"].each {|file| require file }
-require "./common/lib.rb"
+Dir["../app/businessRules/*.rb"].each {|file| require file }
+require "../common/lib.rb"
 require "csv"
 require 'json'
 
