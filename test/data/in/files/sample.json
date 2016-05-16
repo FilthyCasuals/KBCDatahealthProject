@@ -1,0 +1,72 @@
+[
+  {
+    "ruleparameters": {
+      "rule": "dataType",
+      "column": "Id",
+      "typeofdata": "string"
+    }
+  },
+  {
+    "ruleparameters": {
+      "rule": "valueRange",
+      "column": "Amount",
+      "minValue": 0,
+      "maxValue": 200000
+    }
+  },
+  {
+    "ruleparameters": {
+      "rule": "knownValues",
+      "column": "StageName",
+      "values": [
+        {
+          "name": "Qualified Out"
+        },
+        {
+          "name": "Closed Won"
+        }
+      ]
+    }
+  },
+  {
+    "ruleparameters": {
+      "rule": "dateFormatCheck",
+      "column": "CreatedDate",
+      "timeFormat": "YYYY-MM-DD"
+    }
+  },
+  {
+    "ruleparameters": {
+      "rule": "relativeDate",
+      "column": "CreatedDate",
+      "timeFormat": "YYYY-MM-DD",
+      "datePicked": "2014-01-10",
+      "direction": "past"
+    }
+  },
+  {
+    "ruleparameters": {
+      "rule": "nullEmptyCheck",
+      "column": "Id"
+    }
+  },
+  {
+    "ruleparameters": {
+      "rule": "stringLength",
+      "column": "Id",
+      "rules": {
+        "strLen": 18
+      }
+    }
+  },
+  {
+    "ruleparameters": {
+      "rule": "stringLength",
+      "column": "Type",
+      "rules": {
+        "minLen": 4,
+        "maxLen": 7
+      }
+    }
+  }
+]

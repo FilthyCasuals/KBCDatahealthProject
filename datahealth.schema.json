@@ -1,0 +1,168 @@
+{
+  "title": "Business Rules",
+  "type": "array",
+  "items": {
+    "title": "Business Rule",
+    "type": "object",
+    "properties": {
+      "ruleparameters": {
+        "title": "rule",
+        "type": "object",
+        "oneOf": [
+          { "$ref": "#/definitions/datatype" },
+          { "$ref": "#/definitions/valuerange" },
+          { "$ref": "#/definitions/knownvalues"},
+          { "$ref": "#/definitions/dateformatcheck"},
+          { "$ref": "#/definitions/relativedate"},
+          { "$ref": "#/definitions/nullempty"},
+		  { "$ref": "#/definitions/stringlength"}
+        ]
+      }
+    },
+    "required": [ "ruleparameters" ],
+    "additionalProperties": false
+  },
+  "default": {
+    "ruleparameters": "#/definitions/datatype"
+  },
+  "definitions": {
+    "datatype": {
+      "title": "Data Type",
+      "type": "object",
+      "properties": {
+        "rule": { "type": "string", "enum": [ "dataType"], "default": "dataType", "readOnly": true },
+        "column": {"type": "string" },
+        "typeofdata": { "type": "string", "enum": [ "alphanumberic", "integer", "decimal", "date" ] }
+      },
+      "required": [ "rule", "column", "typeofdata" ],
+      "additionalProperties": false
+    },
+    "valuerange": {
+      "title": "Value Range",
+      "type": "object",
+      "properties": {
+        "rule": { "type": "string", "enum": [ "valueRange"], "default": "valueRange", "readOnly": true },
+        "column": { "type": "string" },
+        "minValue": { "type": "integer" },
+        "maxValue": { "type": "integer" }
+      },
+      "required": [ "rule", "column", "minValue", "maxValue" ],
+      "additionalProperties": false
+    },
+    "knownvalues": {
+      "title": "Known Values",
+      "type": "object",
+      "properties": {
+        "rule": { "type": "string", "enum": [ "knownValues"], "default": "knownValues", "readOnly": true },
+        "column": { "type": "string" },
+        "values": {
+          "type": "array",
+          "title": "Known Values",
+          "uniqueItems": true,
+          "items": {
+            "type": "object",
+            "title": "Value",
+            "properties": {
+              "name": {
+                "type": "string"
+              }
+            },
+            "required": [ "name" ],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": [ "rule", "column", "values" ],
+      "additionalProperties": false
+    },
+    "dateformatcheck": {
+      "title": "Date Format",
+      "type": "object",
+      "properties": {
+        "rule": { "type": "string", "enum": [ "dateFormatCheck"], "default": "dateFormatCheck", "readOnly": true },
+        "column": { "type": "string" },
+        "timeFormat": {
+            "title": "Choose time format",
+            "type": "string",
+            "enum": ["YYYY-MM-DD","YYYYMMDD", "YYYY-MM","YYYY/MM/DD", "MM/DD/YYYY", "DD/MM/YYYY", "YYYY", "hh:mm:ss"]}
+        },
+      "required": [ "rule", "column", "timeFormat" ],
+      "additionalProperties": false
+    },
+    "relativedate": {
+        "title": "Relative Date",
+        "type": "object",
+        "properties": {
+          "rule": { "type": "string", "enum": [ "relativeDate"], "default": "relativeDate", "readOnly": true },
+          "column": { "type": "string" },
+          "timeFormat": {
+              "title": "Choose time format",
+              "type": "string",
+              "enum": ["YYYY-MM-DD","YYYYMMDD", "YYYY-MM","YYYY/MM/DD","MM/DD/YYYY", "DD/MM/YYYY", "YYYY"]},
+          "datePicked": {"title": "Please specify the date to compare to. (With the same format above)","type": "string"},
+          "direction": {
+            "title": "Choose the direction",
+            "type": "string",
+            "enum": ["past","future"]}
+        },
+        "required": [ "rule", "column", "timeFormat", "datePicked", "direction"],
+        "additionalProperties": false
+      },
+    "nullempty": {
+      "title": "Null Empty Check",
+      "type": "object",
+      "properties": {
+        "rule": { "type": "string", "enum": [ "nullEmptyCheck"], "default": "nullEmptyCheck", "readOnly": true },
+        "column": { "type": "string" }
+      },
+      "required": [ "rule", "column"],
+      "additionalProperties": false
+    },
+	"stringlength": {
+      "title": "String Length",
+	  "type": "object",
+	  "properties": {
+        "rule": { "type": "string", "enum": [ "stringLength"], "default": "stringLength", "readOnly": true },
+        "column": { "type": "string" },
+		    "options": {
+  			  "title": "options",
+  			  "type": "object",
+  			  "oneOf": [
+  			    { "$ref": "#/definitions/exactlength" },
+  			    { "$ref": "#/definitions/lengthrange" }
+  			  ]
+		    }
+      },
+		"required": [ "rule", "column", "options" ],
+		"additionalProperties": false
+	},
+	"exactlength": {
+      "title": "Exact Length",
+      "type": "object",
+      "properties": {
+        "strLen": {
+          "type": "integer",
+          "title": "Exact Length"
+         }
+      },
+      "required": [ "strLen" ],
+      "additionalProperties": false
+    },
+	"lengthrange": {
+      "title": "Variable Length",
+      "type": "object",
+      "properties": {
+        "minLen": {
+          "type": "integer",
+          "title": "Minimum Length"
+        },
+		    "maxLen": {
+          "type": "integer",
+          "title": "Maximum Length"
+        }
+      },
+      "required": [ "minLen", "maxLen"],
+      "additionalProperties": false
+    }
+  }
+}
