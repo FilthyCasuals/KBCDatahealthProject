@@ -1,6 +1,6 @@
 require 'rubygems'
-Dir['app/businessRules/*.rb'].each {|file| require file }
-require 'common/lib.rb'
+Dir['/home/app/businessRules/*.rb'].each {|file| require file }
+require '/home/common/lib.rb'
 require "csv"
 require 'json'
 
@@ -15,12 +15,12 @@ include NullEmptyCheck
 include StringLength
 
 #parse input JSON for rule parameters
-paramSource = "data/config.json"
+paramSource = "/home/data/config.json"
 jsonFile = File.read(paramSource)
 ruleConfig = JSON.parse(jsonFile, :symbolize_names => true)
 
 #Set up headers for csvoutput file, based on columns from input
-csvSource = "data/in/tables/" + ruleConfig[:configData][:storage][:input][:tables][0][:destination]
+csvSource = "/home/data/in/tables/" + ruleConfig[:configData][:storage][:input][:tables][0][:destination]
 Common::buildHeaders(csvSource)
 
 #apply business rules to input data
