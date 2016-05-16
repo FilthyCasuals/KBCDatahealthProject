@@ -8,7 +8,7 @@ module DataTypeCheck
 
       case params[:typeofdata]
         # check for alphanumeric
-      when 'string'
+      when 'alphanumeric'
         if(row[:"#{params[:column]}"].match(/^[[:alnum:]]+$/) rescue false)
           Common::buildCSV(row.values, "pass")
         else
@@ -16,7 +16,7 @@ module DataTypeCheck
           Common::buildCSV(row.values, "fail")
         end
         #check for decimal
-      when 'decimal number'
+      when 'decimal'
         #stuff = row[:"#{params[:column]}"]
         #if(stuff.match(/^\d+.\d+$/))
         if(Float(row[:"#{params[:column]}"]) rescue false)
