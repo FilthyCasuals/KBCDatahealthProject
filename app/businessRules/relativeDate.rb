@@ -43,6 +43,8 @@ require 'date'
         check = pickDate.match(pattern)
         if(check)
           pickDateTime = DateTime.strptime(pickDate, timeFormat)
+        else
+          return false
         end
       else
         pickDateTime = DateTime.strptime(pickDate, timeFormat)
