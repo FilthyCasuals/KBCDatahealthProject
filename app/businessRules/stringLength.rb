@@ -4,8 +4,8 @@ require 'tempfile'
 module StringLength
   def stringLength(csvinput, params)
     failureField = params[:column] + " failed the string length check"
-    CSV.foreach(csvinput, :headers => true, :header_converters => :symbol, :converters => :all) do |row|
-      row = row.to_hash
+    csv = CSV.open(csvin, :headers => true, :header_converters => :symbol).to_a.map {|row| row.to_hash}
+    csv.each do |row|
       if(row[:"#{params[:column]}"] == nil)
         row << failureField
         Common::buildCSV(row, "fail")
