@@ -9,23 +9,23 @@ module StringLength
       if(row[:"#{params[:column]}"] == nil)
         row << failureField
         Common::buildCSV(row, "fail")
-      elsif (params[:rules][:strLen])
-        if (row[:"#{params[:column]}"].size == params[:rules][:strLen])
+      elsif (params[:options][:strLen])
+        if (row[:"#{params[:column]}"].size == params[:options][:strLen])
           Common::buildCSV(row, "pass")
         else
           row << failureField
           Common::buildCSV(row, "fail")
         end
-      elsif (params[:rules][:minLen] != 0 || params[:rules][:maxLen] != 0)
-        if (params[:rules][:maxLen] == 0)
-          if (row[:"#{params[:column]}"].size >= params[:rules][:minLen])
+      elsif (params[:options][:minLen] != 0 || params[:options][:maxLen] != 0)
+        if (params[:options][:maxLen] == 0)
+          if (row[:"#{params[:column]}"].size >= params[:options][:minLen])
             Common::buildCSV(row, "pass")
           else
             row << failureField
             Common::buildCSV(row, "fail")
           end
         else
-          if (row[:"#{params[:column]}"].size >= params[:rules][:minLen] && row[:"#{params[:column]}"].size <= params[:rules][:maxLen])
+          if (row[:"#{params[:column]}"].size >= params[:options][:minLen] && row[:"#{params[:column]}"].size <= params[:options][:maxLen])
             Common::buildCSV(row, "pass")
           else
             row << failureField

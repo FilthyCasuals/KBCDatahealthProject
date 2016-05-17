@@ -27,7 +27,7 @@ require 'date'
         return checkMatchFormat(csvin, pattern, column)
       when "YYYY/MM/DD"
         pattern = /^[1-9][0-9]{3}\/((1[0-2])|0([1-9]))\/(([1-2][0-9])|0([1-9])|(3[0-1]))$/
-        return checkMatch(csvin, timeFormat, params)
+        return checkMatchFormat(csvin, pattern, column)
       else
       end
 

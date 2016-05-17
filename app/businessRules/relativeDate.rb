@@ -16,7 +16,7 @@ require 'date'
       timeFormat = "%d/%m/%Y"
       return checkMatch(csvin, timeFormat, params)
     when "YYYY/MM/DD"
-      timeFormat = "%Y/%d/%m"
+      timeFormat = "%Y/%m/%d"
       return checkMatch(csvin, timeFormat, params)
     when "MM/DD/YYYY"
       timeFormat = "%m/%d/%Y"
@@ -25,34 +25,36 @@ require 'date'
       timeFormat = "%Y%m%d"
       return checkMatch(csvin, timeFormat, params)
     else
+      return false
     end
   end
 
 
   def checkMatch(csvin, timeFormat, params)
+    #get the user defined values from params
+    column = params[:column]
     pickDate = params[:datePicked]
+    direction = params[:direction]
+
     #convert the picked date from any format to standard format as <DateTime: 2001-02-03T04:05:06+07:00 ...>
     begin
       pickDateTime = DateTime.strptime(pickDate, timeFormat)
     rescue ArgumentError
       return false
     else
-      checkRelative(csvin,timeFormat,params,pickDateTime)
+      checkRelative(csvin,timeFormat,direction,pickDate,column,pickDateTime)
     end
   end
 
-  def checkRelative(csvin,timeFormat,params,pickDateTime)
-    #get the user defined values from params
-    column = params[:column]
-    direction = params[:direction]
-    pickDate = params[:datePicked]
+  def checkRelative(csvin,timeFormat,direction,pickDate,column,pickDateTime)
+
     #iterate the input file
     csv = CSV.open(csvin, :headers => true, :header_converters => :symbol).to_a.map {|row| row.to_hash}
     csv.each do |row|
       begin
         dateTime = DateTime.strptime(row[:"#{column}"], timeFormat)
       rescue ArgumentError
-        row[:failure_reason]  = "Doesn't match the given date format."
+        row[:failure_reason]  = "This #{column} is not #{direction} of #{pickDate}."
         Common::buildCSV(row.values, "fail")
       else
         #check if it's in the past/future relative to picked date
@@ -65,6 +67,7 @@ require 'date'
           Common::buildCSV(row.values, "fail")
         end
       end
+
     end
   end
 
