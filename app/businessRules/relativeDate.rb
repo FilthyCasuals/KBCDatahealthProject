@@ -54,7 +54,7 @@ require 'date'
       begin
         dateTime = DateTime.strptime(row[:"#{column}"], timeFormat)
       rescue ArgumentError
-        row[:failure_reason]  = "Doesn't match the given date format."
+        row[:failure_reason]  = "This #{column} is not #{direction} of #{pickDate}."
         Common::buildCSV(row.values, "fail")
       else
         #check if it's in the past/future relative to picked date
