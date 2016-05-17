@@ -38,7 +38,15 @@ require 'date'
 
     #convert the picked date from any format to standard format as <DateTime: 2001-02-03T04:05:06+07:00 ...>
     begin
-      pickDateTime = DateTime.strptime(pickDate, timeFormat)
+      if(timeFormat == '%Y-%m-%d')
+        pattern = /^[1-9][0-9]{3}\-((1[0-2])|0([1-9]))\-(([1-2][0-9])|0([1-9])|(3[0-1]))$/
+        check = pickDate.match(pattern)
+        if(check)
+          pickDateTime = DateTime.strptime(pickDate, timeFormat)
+        end
+      else
+        pickDateTime = DateTime.strptime(pickDate, timeFormat)
+      end
     rescue ArgumentError
       return false
     else
