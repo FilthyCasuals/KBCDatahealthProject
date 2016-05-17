@@ -34,6 +34,21 @@ module DataTypeCheck
           Common::buildCSV(row.values, "fail")
         end
       when 'date'
+
+        # DATE_FORMATS = ['%m/%d/%Y %I:%M:%S %p', '%Y/%m/%d %H:%M:%S', '%d/%m/%Y %H:%M', '%m/%d/%Y', '%Y/%m/%d']
+        #
+        # def parse_or_nil(date_str)
+        #     parsed_date = nil
+        #     DATE_FORMATS.each do |f|
+        #         parsed_date ||= DateTime.strptime(date_str, f) rescue nil
+        #     end
+        #     parsed_date
+        # end
+
+
+
+
+
         if(Date.parse(row[:"#{params[:column]}"]) rescue false)
           Common::buildCSV(row.values, "pass")
         else
