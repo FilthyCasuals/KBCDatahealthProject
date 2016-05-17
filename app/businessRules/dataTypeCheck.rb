@@ -6,7 +6,7 @@ module DataTypeCheck
 
     csv.each do |row|
 
-      case params[:dataType]
+      case params[:typeofdata]
         # check for alphanumeric
       when 'alphanumeric'
         if(row[:"#{params[:column]}"].match(/^[[:alnum:]]+$/) rescue false)
