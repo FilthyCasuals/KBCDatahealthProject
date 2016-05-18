@@ -19,34 +19,34 @@ module StringLength
       #if the strLen parameter has been passed in
       elsif (options[:strLen] != nil && options[:strLen] != 0)
         if (row[:"#{params[:column]}"].size == options[:strLen])
-          Common::buildCSV(row, "pass")
+          Common::buildCSV(row.values, "pass")
         else
           row[:failureReason] = failureField + "field length is not " + options[:strLen]
-          Common::buildCSV(row, "fail")
+          Common::buildCSV(row.values, "fail")
         end
       #if the minLen or maxLen parameters have been passed in
       elsif ((options[:minLen] != nil && options[:minLen] != 0) || (options[:maxLen] != nil && options[:maxLen] != 0))
         #if maxLen hasn't been set
         if (options[:maxLen] == 0)
           if (row[:"#{params[:column]}"].size >= options[:minLen])
-            Common::buildCSV(row, "pass")
+            Common::buildCSV(row.values, "pass")
           else
             row[:failureReason] = failureField + "field length is less than " + options[:minLen]
-            Common::buildCSV(row, "fail")
+            Common::buildCSV(row.values, "fail")
           end
         #if maxLen has been set
         else
           if (row[:"#{params[:column]}"].size >= options[:minLen] && row[:"#{params[:column]}"].size <= options[:maxLen])
-            Common::buildCSV(row, "pass")
+            Common::buildCSV(row.values, "pass")
           else
             row[:failureReason] = failureField + "field length is not between " + options[:minLen] + " and " + options[:maxLen]
-            Common::buildCSV(row, "fail")
+            Common::buildCSV(row.values, "fail")
           end
         end
       #if the parameters have not been set correctly
       else
         row[:failureReason] = "Error occured, invalid string length setting."
-        Common::buildCSV(row, "fail")
+        Common::buildCSV(row.values, "fail")
       end
     end
   end
