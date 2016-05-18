@@ -5,9 +5,9 @@ module StringLength
   def stringLength(csvinput, params)
     failureField = "Column " + params[:column] + " failed the string length check: "
     options = params[:options].to_hash
-    #row = Hash.new
-    CSV.foreach(csvinput, :headers => true, :header_converters => :symbol, :converters => :all) do {|row| row.to_hash}
-      #row << csvRow.to_hash
+    row = CSV::row.new
+    CSV.foreach(csvinput, :headers => true, :header_converters => :symbol, :converters => :all) do |csvRow|
+      row << csvRow.to_hash
       #if the row doesn't exist
       if(row.empty?)
         next
