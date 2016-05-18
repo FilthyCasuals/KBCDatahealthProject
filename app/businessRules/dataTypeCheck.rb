@@ -1,5 +1,5 @@
 module DataTypeCheck
-  require 'DateTime'
+  require 'date'
 
   def dataType(csvFile, params)
     dateFormats = ['%m/%d/%Y', '%Y/%m/%d', '%d/%m/%y', '%y%m%d', '%d%m%y', '%m%d%y', '%y', '%y-%m', '%y-%m-%d', '%d-%m-%y', '%m-%d-%y', '%H:%M:%S']
