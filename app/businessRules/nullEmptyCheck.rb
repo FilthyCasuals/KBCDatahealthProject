@@ -4,8 +4,8 @@ require 'tempfile'
 module NullEmptyCheck
   def nullEmptyCheck(csvinput, params)
     failureField = "Failed the null or empty field check"
-    row = CSV::Row.new
-    CSV.foreach(csvinput, :headers => true, :header_converters => :symbol, :converters => :all) do |csvRow|
+    row = Array.new
+    CSV.foreach(csvinput, {:encoding => "UTF-8", :headers => true, :header_converters => :symbol, :converters => :all}) do |csvRow|
       row << csvRow.to_hash
       if (row[:"#{params[:column]}"] == "" || row[:"#{params[:column]}"] == nil)
         row << failureField
