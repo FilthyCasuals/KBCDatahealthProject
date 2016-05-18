@@ -10,14 +10,14 @@ module StringLength
       if(row[:"#{params[:column]}"] == nil)
         row << failureField
         Common::buildCSV(row, "fail")
-      elsif (options[:strLen])
+      elsif (options[:strLen] != nil && options[:strLen] != 0)
         if (row[:"#{params[:column]}"].size == options[:strLen])
           Common::buildCSV(row, "pass")
         else
           row << failureField
           Common::buildCSV(row, "fail")
         end
-      elsif (options[:minLen] != 0 || options[:maxLen] != 0)
+      elsif ((options[:minLen] != nil && options[:minLen] != 0) || (options[:maxLen] != nil && options[:maxLen] != 0))
         if (options[:maxLen] == 0)
           if (row[:"#{params[:column]}"].size >= options[:minLen])
             Common::buildCSV(row, "pass")
