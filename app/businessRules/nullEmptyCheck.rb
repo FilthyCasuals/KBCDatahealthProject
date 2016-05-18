@@ -11,7 +11,7 @@ module NullEmptyCheck
       #row << csvRow.to_hash
       if(row != nil)
         if (row[:"#{params[:column]}"] == "" || row[:"#{params[:column]}"] == nil)
-          row << failureField
+          row[:failureReason] = failureField
           Common::buildCSV(row, "fail")
         else
           Common::buildCSV(row, "pass")
