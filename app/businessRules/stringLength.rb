@@ -21,7 +21,7 @@ module StringLength
         if (row[:"#{params[:column]}"].size == options[:strLen])
           Common::buildCSV(row.values, "pass")
         else
-          row[:failureReason] = failureField + "field length is not " + options[:strLen]
+          row[:failureReason] = failureField + " field length is not " + "#{options[:strLen]}"
           Common::buildCSV(row.values, "fail")
         end
       #if the minLen or maxLen parameters have been passed in
@@ -31,7 +31,7 @@ module StringLength
           if (row[:"#{params[:column]}"].size >= options[:minLen])
             Common::buildCSV(row.values, "pass")
           else
-            row[:failureReason] = failureField + "field length is less than " + options[:minLen]
+            row[:failureReason] = failureField + "field length is less than " + "#{options[:minLen]}"
             Common::buildCSV(row.values, "fail")
           end
         #if maxLen has been set
@@ -39,7 +39,7 @@ module StringLength
           if (row[:"#{params[:column]}"].size >= options[:minLen] && row[:"#{params[:column]}"].size <= options[:maxLen])
             Common::buildCSV(row.values, "pass")
           else
-            row[:failureReason] = failureField + "field length is not between " + options[:minLen] + " and " + options[:maxLen]
+            row[:failureReason] = failureField + "field length is not between " + "#{options[:minLen]}" + " and " + "#{options[:maxLen]}"
             Common::buildCSV(row.values, "fail")
           end
         end
