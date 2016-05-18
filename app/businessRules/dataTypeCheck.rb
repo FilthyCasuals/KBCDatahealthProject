@@ -2,9 +2,17 @@ module DataTypeCheck
   require 'date'
 
   def dataType(csvFile, params)
+
+    #date formats to check
     dateFormats = ['%m/%d/%y', '%y/%m/%d', '%d/%m/%y', '%m/%d/%Y', '%Y/%m/%d', '%d/%m/%Y',
+      '%b/%d/%y', '%y/%b/%d', '%d/%b/%y', '%b/%d/%Y', '%Y/%b/%d', '%d/%b/%Y',
+      '%B/%d/%y', '%y/%B/%d', '%d/%B/%y', '%B/%d/%Y', '%Y/%B/%d', '%d/%B/%Y',
        '%d%m%y', '%m%d%y', '%d%m%Y', '%m%d%Y',
+       '%d%b%y', '%b%d%y', '%d%b%Y', '%b%d%Y',
+       '%d%B%y', '%B%d%y', '%d%B%Y', '%B%d%Y',
         '%y-%m', '%y-%m-%d', '%d-%m-%y', '%m-%d-%y', '%Y-%m', '%Y-%m-%d', '%d-%m-%Y', '%m-%d-%Y',
+        '%y-%b', '%y-%b-%d', '%d-%b-%y', '%b-%d-%y', '%Y-%b', '%Y-%b-%d', '%d-%b-%Y', '%b-%d-%Y',
+        '%y-%B', '%y-%B-%d', '%d-%B-%y', '%B-%d-%y', '%Y-%B', '%Y-%B-%d', '%d-%B-%Y', '%B-%d-%Y',
          '%H:%M:%S']
     csv = CSV.open(csvFile, :headers => true, :header_converters => :symbol).to_a.map {|row| row.to_hash}
 
