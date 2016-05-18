@@ -4,10 +4,12 @@ require 'tempfile'
 module StringLength
   def stringLength(csvinput, params)
     failureField = "Column " + params[:column] + " failed the string length check: "
-    options = params[:options].to_hash
-    row = Array.new
-    CSV.foreach(csvinput, {:encoding => "UTF-8", :headers => true, :header_converters => :symbol, :converters => :all}) do |csvRow|
-      row << csvRow.to_hash
+    options = params[:options]
+    #row = Array.new
+    csv = csv.open(csvinput, {:encoding => "UTF-8", :headers => true, :header_converters => :symbol, :converters => :all}).to_a.map {|row| row.to_hash}
+    csv.each do |row|
+    #CSV.foreach(csvinput, {:encoding => "UTF-8", :headers => true, :header_converters => :symbol, :converters => :all}) do |csvRow|
+      #row << csvRow.to_hash
       #if the row doesn't exist
       if(row.empty?)
         next
