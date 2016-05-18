@@ -2,7 +2,7 @@ module DataTypeCheck
   require 'date'
 
   def dataType(csvFile, params)
-    dateFormats = ['%m/%d/%Y', '%Y/%m/%d', '%d/%m/%y', '%y%m%d', '%d%m%y', '%m%d%y', '%y', '%y-%m', '%y-%m-%d', '%d-%m-%y', '%m-%d-%y', '%H:%M:%S']
+    dateFormats = ['%m/%d/%y', '%y/%m/%d', '%d/%m/%y', '%y%m%d', '%d%m%y', '%m%d%y', '%y-%m', '%y-%m-%d', '%d-%m-%y', '%m-%d-%y', '%H:%M:%S']
     csv = CSV.open(csvFile, :headers => true, :header_converters => :symbol).to_a.map {|row| row.to_hash}
 
     csv.each do |row|
