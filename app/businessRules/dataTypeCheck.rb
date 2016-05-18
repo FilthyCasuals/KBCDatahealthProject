@@ -1,5 +1,5 @@
 module DataTypeCheck
-  require 'date'
+  require 'DateTime'
 
   def dataType(csvFile, params)
     csv = CSV.open(csvFile, :headers => true, :header_converters => :symbol).to_a.map {|row| row.to_hash}
@@ -38,7 +38,13 @@ module DataTypeCheck
         DATE_FORMATS = ['%m/%d/%Y', '%Y/%m/%d', '%d/%m/%y', '%y%m%d',
                          '%d%m%y', '%m%d%y', '%y', '%y-%m', '%y-%m-%d',
                           '%d-%m-%y', '%m-%d-%y', '%H:%M:%S']
-
+        def parse_or_nil(date_str)
+            parsed_date = nil
+            DATE_FORMATS.each do |f|
+                parsed_date ||= DateTime.strptime(date_str, f) rescue nil
+            end
+            parsed_date
+        end
         if(parse_or_nil(row[:"#{params[:column]}"]))
           Common::buildCSV(row.values, "pass")
         else
@@ -47,14 +53,8 @@ module DataTypeCheck
         end
       end
 
-      def parse_or_nil(date_str)
-          parsed_date = nil
-          DATE_FORMATS.each do |f|
-              parsed_date ||= DateTime.strptime(date_str, f) rescue nil
-          end
-          parsed_date
-      end
-      
+
+
     end
   end
 end
