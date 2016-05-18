@@ -38,14 +38,14 @@ module DataTypeCheck
         DATE_FORMATS = ['%m/%d/%Y', '%Y/%m/%d', '%d/%m/%y', '%y%m%d',
                          '%d%m%y', '%m%d%y', '%y', '%y-%m', '%y-%m-%d',
                           '%d-%m-%y', '%m-%d-%y', '%H:%M:%S']
-        def parse_or_nil(date_str)
-            parsed_date = nil
-            DATE_FORMATS.each do |f|
-                parsed_date ||= DateTime.strptime(date_str, f) rescue nil
-            end
-            parsed_date
+
+        parsed_date = nil
+        DATE_FORMATS.each do |f|
+            parsed_date ||= DateTime.strptime(row[:"#{params[:column]}"], f) rescue nil
         end
-        if(parse_or_nil(row[:"#{params[:column]}"]))
+
+
+        if(parsed_date)
           Common::buildCSV(row.values, "pass")
         else
           row[:failure_reason]  = " #{params[:column]} is not a date"
