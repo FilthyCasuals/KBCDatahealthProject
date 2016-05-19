@@ -30,9 +30,9 @@
       "title": "Data Type",
       "type": "object",
       "properties": {
-        "rule": { "type": "string", "enum": [ "dataType"], "default": "dataType", "readOnly": true },
-        "column": {"type": "string" },
-        "typeofdata": { "type": "string", "enum": [ "alphanumeric", "integer", "decimal", "date" ] }
+        "rule": { "title": "Rule", "type": "string", "enum": [ "dataType"], "default": "dataType", "readOnly": true },
+        "column": { "title": "Column", "type": "string" },
+        "typeofdata": { "title": "Type of Data", "type": "string", "enum": [ "alphanumeric", "integer", "decimal", "date" ] }
       },
       "required": [ "rule", "column", "typeofdata" ],
       "additionalProperties": false
@@ -41,10 +41,10 @@
       "title": "Value Range",
       "type": "object",
       "properties": {
-        "rule": { "type": "string", "enum": [ "valueRange"], "default": "valueRange", "readOnly": true },
-        "column": { "type": "string" },
-        "minValue": { "type": "integer" },
-        "maxValue": { "type": "integer" }
+        "rule": { "title": "Rule", "type": "string", "enum": [ "valueRange"], "default": "valueRange", "readOnly": true },
+        "column": { "title": "Column", "type": "string" },
+        "minValue": { "title": "Minimum Value", "type": "integer" },
+        "maxValue": { "title": "Maximum Value", "type": "integer" }
       },
       "required": [ "rule", "column", "minValue", "maxValue" ],
       "additionalProperties": false
@@ -53,8 +53,8 @@
       "title": "Known Values",
       "type": "object",
       "properties": {
-        "rule": { "type": "string", "enum": [ "knownValues"], "default": "knownValues", "readOnly": true },
-        "column": { "type": "string" },
+        "rule": { "title": "Rule", "type": "string", "enum": [ "knownValues"], "default": "knownValues", "readOnly": true },
+        "column": { "title": "Column", "type": "string" },
         "values": {
           "type": "array",
           "title": "Known Values",
@@ -64,6 +64,7 @@
             "title": "Value",
             "properties": {
               "name": {
+                "title": "Value Name",
                 "type": "string"
               }
             },
@@ -79,8 +80,8 @@
       "title": "Date Format",
       "type": "object",
       "properties": {
-        "rule": { "type": "string", "enum": [ "dateFormatCheck"], "default": "dateFormatCheck", "readOnly": true },
-        "column": { "type": "string" },
+        "rule": { "title": "Rule", "type": "string", "enum": [ "dateFormatCheck"], "default": "dateFormatCheck", "readOnly": true },
+        "column": { "title": "Column", "type": "string" },
         "timeFormat": {
             "title": "Choose time format",
             "type": "string",
@@ -93,8 +94,8 @@
         "title": "Relative Date",
         "type": "object",
         "properties": {
-          "rule": { "type": "string", "enum": [ "relativeDate"], "default": "relativeDate", "readOnly": true },
-          "column": { "type": "string" },
+          "rule": { "title": "Rule", "type": "string", "enum": [ "relativeDate"], "default": "relativeDate", "readOnly": true },
+          "column": { "title": "Column", "type": "string" },
           "timeFormat": {
               "title": "Choose time format",
               "type": "string",
@@ -112,8 +113,8 @@
       "title": "Null Empty Check",
       "type": "object",
       "properties": {
-        "rule": { "type": "string", "enum": [ "nullEmptyCheck"], "default": "nullEmptyCheck", "readOnly": true },
-        "column": { "type": "string" }
+        "rule": { "title": "Rule", "type": "string", "enum": [ "nullEmptyCheck"], "default": "nullEmptyCheck", "readOnly": true },
+        "column": { "title": "Column", "type": "string" }
       },
       "required": [ "rule", "column"],
       "additionalProperties": false
@@ -122,8 +123,8 @@
       "title": "String Length",
 	  "type": "object",
 	  "properties": {
-        "rule": { "type": "string", "enum": [ "stringLength"], "default": "stringLength", "readOnly": true },
-        "column": { "type": "string" },
+        "rule": { "title": "Rule", "type": "string", "enum": [ "stringLength"], "default": "stringLength", "readOnly": true },
+        "column": { "title": "Column", "type": "string" },
 		    "options": {
   			  "title": "options",
   			  "type": "object",
