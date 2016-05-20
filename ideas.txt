@@ -1,0 +1,21 @@
+FAILURE OUTPUT IDEAS
+
+indicate failure reason column more clearly
+add column for business rule id
+add column to indicate which column is affected
+define what to write for the failure reason in UI (set by user)
+
+RULES IDEAS
+
+compare columns relatively
+date relative (ie. in last 3 months, today/tomorrow etc...)
+presence of a particular character/substring/pattern/mask check
+math total comparisons (total/difference between two columns more/less than X value)
+
+data type boolean check
+checking for carriage return/new line
+
+multiple tables comparison rules (maybe)
+
+check data based on a business profile (data matches a specific metadata settings)
+(ask user if they want to do a check on a metadata (ie. this column is supposed to be integer, want to make it a rule))
